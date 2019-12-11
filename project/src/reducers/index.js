@@ -18,6 +18,7 @@ import {
           isLoading: true
         };
       case DATA_LOAD_SUCCESS:
+        console.log(action.payload)
         return {
           ...state,
           data: action.payload,

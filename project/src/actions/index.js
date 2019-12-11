@@ -7,7 +7,7 @@ export const DATA_LOAD_FAILURE = "DATA_LOAD_FAILURE";
 export const getData = () => dispatch => {
   console.log('dispatch',dispatch);
   dispatch({ type: DATA_LOAD_START });
-  axios.get('')
-  .then(res => dispatch({type: DATA_LOAD_SUCCESS, payload: {name: res.data.value}}))
+  axios.get('https://api.spacexdata.com/v3/launches/latest')
+  .then(res => dispatch({type: DATA_LOAD_SUCCESS, payload: res.data}))
   .catch(err => console.log(err))
 };

@@ -23,7 +23,7 @@ function App() {
       {isLoading ? (
         <div>loading data...</div>
       ) : (
-        <div>Data Name:{data.name}</div>
+        <div>Name:{data.mission_name}</div>
       )}
     </div>
   );
