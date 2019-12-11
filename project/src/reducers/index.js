@@ -2,7 +2,8 @@ import {
     DATA_LOAD_START,
     DATA_LOAD_SUCCESS,
     DATA_LOAD_FAILURE,
-    SEARCH_UPDATE
+    SEARCH_UPDATE,
+    CHANGE_IMAGE
   } from "../actions";
   
   const intializeData = () =>{
@@ -20,7 +21,8 @@ import {
     isLoading: false,
     error: "",
     data: intializeData(),
-    flight: 84
+    flight: 84,
+    image: 0
   };
   
   const reducer = (state = initialState, action) => {
@@ -44,11 +46,18 @@ import {
           isLoading: false
         };
       case SEARCH_UPDATE:
-          console.log('search update', action.payload)
+        //   console.log('search update', action.payload)
         return {
           ...state,
           flight: action.payload,
           isLoading: false
+        };
+      case CHANGE_IMAGE:
+          console.log('change image', action.payload)
+        return {
+            ...state,
+            image: action.payload,
+            isLoading: false
         };
       default:
         return state;

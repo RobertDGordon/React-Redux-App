@@ -4,7 +4,7 @@ import { getData } from './actions';
 import Card from './components/Card';
 import './App.css';
 import SearchBar from './components/SearchBar';
-import {SEARCH_UPDATE} from './actions';
+import {SEARCH_UPDATE, CHANGE_IMAGE} from './actions';
 import styled from 'styled-components';
 
 const MainDiv = styled.div `
@@ -20,19 +20,23 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const { isLoading, error, data, flight } = useSelector(
+  const { isLoading, error, data, flight, image } = useSelector(
     state => ({
       isLoading: state.isLoading,
       error: state.error,
       data: state.data,
-      flight: state.flight
+      flight: state.flight,
+      image: state.image
     }),
     shallowEqual
   );
   
   const updateSearch = (number) =>{
-    console.log('function click', number)
+    // console.log('function click', number)
     dispatch({type: SEARCH_UPDATE, payload: number});
+  }
+  const changeImage = (number) =>{
+    dispatch({type: CHANGE_IMAGE, payload: number});
   }
 
   return (
@@ -45,7 +49,7 @@ function App() {
               <button onClick={() => dispatch(getData())}>Launch!</button>
             ) }</>
         ) : (
-          <><Card data={data} flight={flight}/></>
+          <><Card data={data} flight={flight} image={image} changeImage={changeImage}/></>
         ) }
         </div>
         {error && <div>{error}</div>}
