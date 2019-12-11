@@ -50,6 +50,7 @@ import {
         return {
           ...state,
           flight: action.payload,
+          image: 0,
           isLoading: false
         };
       case CHANGE_IMAGE:

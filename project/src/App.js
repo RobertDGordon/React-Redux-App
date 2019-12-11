@@ -49,7 +49,7 @@ function App() {
               <button onClick={() => dispatch(getData())}>Launch!</button>
             ) }</>
         ) : (
-          <><Card data={data} flight={flight} image={image} changeImage={changeImage}/></>
+          <><Card data={data} flight={flight} image={image} changeImage={changeImage} updateSearch={updateSearch}/></>
         ) }
         </div>
         {error && <div>{error}</div>}
