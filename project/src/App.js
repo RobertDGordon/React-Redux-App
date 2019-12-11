@@ -1,24 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
+import { getData } from './actions'
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  const { isLoading, error, data } = useSelector(
+    state => ({
+      isLoading: state.isLoading,
+      error: state.error,
+      data: state.data
+    }),
+    shallowEqual
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => dispatch(getData())}>Launch!</button>
+      {error && <div>{error}</div>}
+      {isLoading ? (
+        <div>loading data...</div>
+      ) : (
+        <div>Data Name:{data.name}</div>
+      )}
     </div>
   );
 }
