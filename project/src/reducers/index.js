@@ -1,7 +1,8 @@
 import {
     DATA_LOAD_START,
     DATA_LOAD_SUCCESS,
-    DATA_LOAD_FAILURE
+    DATA_LOAD_FAILURE,
+    SEARCH_UPDATE
   } from "../actions";
   
   const intializeData = () =>{
@@ -18,7 +19,8 @@ import {
   const initialState = {
     isLoading: false,
     error: "",
-    data: intializeData()
+    data: intializeData(),
+    flight: 84
   };
   
   const reducer = (state = initialState, action) => {
@@ -39,6 +41,13 @@ import {
         return {
           ...state,
           error: action.payload,
+          isLoading: false
+        };
+      case SEARCH_UPDATE:
+          console.log('search update', action.payload)
+        return {
+          ...state,
+          flight: action.payload,
           isLoading: false
         };
       default:
