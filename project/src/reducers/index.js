@@ -8,7 +8,7 @@ import {
     let arr = []
     for(let i = 0; i < 104; i++){
         // console.log(i)
-        arr = [...arr, {flight_number: i, details: '', mission_name:'', launch_date_unix: 0, links: {flickr_images:[]} }]
+        arr = [...arr, {flight_number: i+1, details: '', mission_name:'', launch_date_unix: 0, links: {flickr_images:[]} }]
     }
     console.log(arr)
     return arr
