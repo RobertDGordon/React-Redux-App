@@ -4,10 +4,21 @@ import {
     DATA_LOAD_FAILURE
   } from "../actions";
   
+  const intializeData = () =>{
+    let arr = []
+    for(let i = 0; i < 104; i++){
+        // console.log(i)
+        arr = [...arr, {mission_name:''}]
+    }
+    console.log(arr)
+    return arr
+  }
+  
+
   const initialState = {
     isLoading: false,
     error: "",
-    data: {}
+    data: intializeData()
   };
   
   const reducer = (state = initialState, action) => {

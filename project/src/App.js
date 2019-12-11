@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowEqual, useSelector, useDispatch } from "react-redux";
-import { getData } from './actions'
+import { getData } from './actions';
+import Card from './components/Card';
 import './App.css';
 
 function App() {
@@ -20,11 +21,9 @@ function App() {
     <div className="App">
       <button onClick={() => dispatch(getData())}>Launch!</button>
       {error && <div>{error}</div>}
-      {isLoading ? (
-        <div>loading data...</div>
-      ) : (
-        <div>Name:{data.mission_name}</div>
-      )}
+      {data[0].mission_name !== undefined ?
+      (<>{isLoading ? (<div>loading data...</div>) : (<><Card data={data}/></>)}</>) : (<>Click to launch</>) }
+      
     </div>
   );
 }
