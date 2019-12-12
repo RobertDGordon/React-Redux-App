@@ -48,7 +48,7 @@ const SearchBar = (props) => {
           <button>Search!</button>
         </form>
         </SearchDiv>
-        {doesNotExist && <div>Error, flight does not exist!</div>}
+        {doesNotExist && <div onClick={() => setDoesNotExist(false)}>Error, flight does not exist... yet!</div>}
         </>
     )
 }

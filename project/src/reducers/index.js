@@ -22,7 +22,7 @@ import {
     error: "",
     data: intializeData(),
     flight: 84,
-    image: 0
+    image: 0,
   };
   
   const reducer = (state = initialState, action) => {

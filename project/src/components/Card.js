@@ -1,8 +1,12 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import moment from 'moment'
+import { slideInUp } from 'react-animations'
+
+const slideAnim = keyframes`${slideInUp}`
 
 const CardDiv = styled.div `
+    animation: 1.5s ${slideAnim};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,6 +53,7 @@ const CardDiv = styled.div `
         }
         .imgbtn{
             font-size: 3rem;
+            transition: all 300ms ease-in-out;
             &:hover{
                 color: lightgray;
                 cursor: pointer;

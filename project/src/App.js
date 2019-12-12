@@ -42,7 +42,7 @@ function App() {
       error: state.error,
       data: state.data,
       flight: state.flight,
-      image: state.image
+      image: state.image,
     }),
     shallowEqual
   );
