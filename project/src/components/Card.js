@@ -1,6 +1,6 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components'
-import moment from 'moment'
+import styled, {keyframes} from 'styled-components';
+import moment from 'moment';
 import { slideInUp } from 'react-animations'
 
 const slideAnim = keyframes`${slideInUp}`
