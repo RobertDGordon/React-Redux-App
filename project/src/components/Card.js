@@ -12,16 +12,23 @@ const CardDiv = styled.div `
     width: 600px;
     margin: 10px;
     padding: 20px;
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 800px) {
         width: 320px;
+        margin: 0px;
+        padding: 0px;
     }
     .image{
         display: flex;
         justify-content: center;
         align-items: center;
         width:590px;
-        min-height:400px;
+        height:400px;
         /* overflow: hidden; */
+        @media screen and (max-width: 800px) {
+            width: 310px;
+            height: 200px;
+            margin-top: 10px;
+        }
         .imgcont{
             width: 590px;
             height: 400px;
@@ -29,9 +36,16 @@ const CardDiv = styled.div `
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            @media screen and (max-width: 800px) {
+                width: 310px;
+                height: 200px;
+            }
         }
         img{
             max-width: 585px;
+            @media screen and (max-width: 800px) {
+                max-width: 300px;
+            }
         }
         .imgbtn{
             font-size: 3rem;
@@ -39,10 +53,14 @@ const CardDiv = styled.div `
                 color: lightgray;
                 cursor: pointer;
             }
+            @media screen and (max-width: 800px) {
+                font-size: 2rem;
+            }
         }
     }
     .info{
-        width: 100%;
+        width: 95%;
+        padding: 5px;
     }
     .buttondiv{
         display: flex;

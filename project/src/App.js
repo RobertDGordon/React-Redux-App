@@ -6,6 +6,7 @@ import './App.css';
 import SearchBar from './components/SearchBar';
 import {SEARCH_UPDATE, CHANGE_IMAGE} from './actions';
 import styled from 'styled-components';
+import Loading from './components/Loading';
 
 const MainDiv = styled.div `
   display:flex;
@@ -14,8 +15,14 @@ const MainDiv = styled.div `
   align-items: center;
   width: 800px;
   margin: 0 auto;
-  img{
-    width: 600px;
+  @media screen and (max-width: 800px) {
+        width: 320px;
+    }
+  #logo{
+    width: 60%;
+    @media screen and (max-width: 800px) {
+        width: 320px;
+    }
   }
   h1{
     margin-top: -30px;
@@ -48,11 +55,11 @@ function App() {
   return (
     <div className="App">
       <MainDiv>
-        <img src='https://www.stickpng.com/assets/images/5842a770a6515b1e0ad75afe.png' alt='Space X' />
+        <img id='logo' src='https://www.stickpng.com/assets/images/5842a770a6515b1e0ad75afe.png' alt='Space X' />
         <h1>Flight Finder</h1>
         <SearchBar updateSearch={updateSearch} />
         <div>{data[flight].mission_name === '' ? (<>
-            {isLoading ? (<div>loading data...</div>
+            {isLoading ? (<div><Loading/></div>
             ) : (
               <button onClick={() => dispatch(getData())}>Launch!</button>
             ) }</>
