@@ -14,6 +14,12 @@ const MainDiv = styled.div `
   align-items: center;
   width: 800px;
   margin: 0 auto;
+  img{
+    width: 600px;
+  }
+  h1{
+    margin-top: -30px;
+  }
 `
 
 function App() {
@@ -42,6 +48,8 @@ function App() {
   return (
     <div className="App">
       <MainDiv>
+        <img src='https://www.stickpng.com/assets/images/5842a770a6515b1e0ad75afe.png' alt='Space X' />
+        <h1>Flight Finder</h1>
         <SearchBar updateSearch={updateSearch} />
         <div>{data[flight].mission_name === '' ? (<>
             {isLoading ? (<div>loading data...</div>

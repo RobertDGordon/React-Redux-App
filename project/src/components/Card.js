@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import moment from 'moment'
 
@@ -9,40 +9,47 @@ const CardDiv = styled.div `
     align-items: center;
     background-color: white;
     color: black;
-    width: 500px;
+    width: 600px;
     margin: 10px;
     padding: 20px;
+    @media screen and (max-width: 400px) {
+        width: 320px;
+    }
     .image{
         display: flex;
         justify-content: center;
         align-items: center;
-        width:450px;
-        min-height:300px;
+        width:590px;
+        min-height:400px;
         /* overflow: hidden; */
         .imgcont{
-            min-width:450px;
-            min-height: 300px;
+            width: 590px;
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         img{
-            max-width: 450px;
-            max-height: 300px
+            max-width: 585px;
         }
         .imgbtn{
             font-size: 3rem;
             &:hover{
                 color: lightgray;
+                cursor: pointer;
             }
         }
+    }
+    .info{
+        width: 100%;
     }
     .buttondiv{
         display: flex;
         width: 100%;
         justify-content: center;
         button{
-            margin-left: 5px;
+            margin: 5px;
         }
     }
     div{
@@ -55,64 +62,63 @@ const CardDiv = styled.div `
 
 const Card = (props) => {
 
-    const [currentImg, setCurrentImg] = useState(0);
+    // const [currentImg, setCurrentImg] = useState(props.image);
 
-    const [currentFlight, setCurrentFlight] = useState(props.flight);
+    // const [currentFlight, setCurrentFlight] = useState(props.flight);
+    let currentImg = (props.image)
+    let currentFlight = (props.flight)
 
     const timestamp = moment.unix(props.data[props.flight].launch_date_unix);
 
     const leftChange = e =>{
         e.preventDefault();
-        console.log('left', currentImg)
+        // console.log('left', currentImg)
         if (currentImg === 0){
-            let newImg = (props.data[props.flight].links.flickr_images.length-1)
-            console.log(newImg)
-            setCurrentImg(newImg)
-            console.log('equals zero',currentImg)
+            currentImg = (props.data[props.flight].links.flickr_images.length-1)
+            console.log('at zero, array length:',currentImg)
+        
         } else {
-            let newImg = (currentImg-1)
-            console.log(newImg)
-            setCurrentImg(newImg)
-            console.log('else',currentImg)
+            currentImg = (currentImg-1)
+            // console.log('else',currentImg)
         }
         props.changeImage(currentImg)
     }
 
     const rightChange = e =>{
         e.preventDefault();
-        console.log('right', currentImg)
+        // console.log('right', currentImg)
         if (currentImg === props.data[props.flight].links.flickr_images.length-1){
-            setCurrentImg(0)
+            currentImg = 0
             console.log('max array',currentImg)
         } else {
-            setCurrentImg(currentImg+1)
-            console.log('else',currentImg)
+            currentImg = (currentImg+1)
+            // console.log('else',currentImg)
         }
         props.changeImage(currentImg)
     }
 
     const prevFlight = e =>{
         e.preventDefault();
-        console.log('prev', currentFlight, props.data.length)
+        // console.log('prev', currentFlight, props.data.length)
         if (currentFlight === 0){
-            setCurrentFlight((props.data.length-1))
-            console.log('equals zero',currentFlight)
+            currentFlight = (props.data.length-1)
+            console.log('at zero, array length:',currentFlight)
         } else {
-            setCurrentFlight(currentFlight-1)
-            console.log('else',currentFlight)
+            currentFlight = (currentFlight-1)
+            // console.log('else',currentFlight)
         }
         props.updateSearch(currentFlight)
     }
 
     const nextFlight = e =>{
         e.preventDefault();
-        console.log('next', currentFlight)
+        // console.log('next', currentFlight)
         if (currentFlight === props.data.length-1){
-            setCurrentFlight(0)
+            currentFlight = (0)
             console.log('max array',currentFlight)
         } else {
-            setCurrentFlight(currentFlight+1)
-            console.log('else',currentFlight)
+            currentFlight = (currentFlight+1)
+            // console.log('else',currentFlight)
         }
         props.updateSearch(currentFlight)
     }
@@ -120,7 +126,7 @@ const Card = (props) => {
 
     return(
         <CardDiv>
-        <div className='image'>{props.data[props.flight].links.flickr_images[0] !== undefined ? <><div className='imgbtn' onClick={e => leftChange(e)}>{`<`}</div><div className='imgcont'><img src={props.data[props.flight].links.flickr_images[props.image]} alt='Flickr'/></div><div className='imgbtn' onClick={e => rightChange(e)}>></div></> : <>Image Not Available</> }</div>
+        <div className='image'>{props.data[props.flight].links.flickr_images[0] !== undefined ? <><div className='imgbtn' onClick={e => leftChange(e)}>{`<`}</div><div className='imgcont'><img src={props.data[props.flight].links.flickr_images[props.image]} alt='Flickr'/></div><div className='imgbtn' onClick={e => rightChange(e)}>></div></> : <div className='imgcont'><img src='https://www.stickpng.com/assets/images/5842a770a6515b1e0ad75afe.png' alt='Space X'/></div> }</div>
         <div className='info'>
         <div className='buttondiv'><button onClick={e => {prevFlight(e)}}>Prev Flight</button><button onClick={e => {nextFlight(e)}}>Next Flight</button></div>
         <div><span>Flight number:</span> {props.data[props.flight].flight_number}</div>    

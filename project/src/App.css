@@ -10,3 +10,14 @@
   font-size: 80%;
   color: white;
 }
+
+button{
+  border: none;
+  color: white;
+  background-color: darkslategray;
+  padding: 5px;
+}
+
+button:hover{
+  background-color: lightgray;
+}
