@@ -13,6 +13,7 @@ const SearchDiv = styled.div `
 const SearchBar = (props) => {
 
   const [srch, setSrch] = useState('');
+  const [doesNotExist, setDoesNotExist] = useState(false);
 
   const handleChange = event => {
     setSrch(event.target.value);
@@ -21,17 +22,34 @@ const SearchBar = (props) => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log ('searching for',srch);
+    setDoesNotExist(false)
+    if (srch > props.data.length){
+      console.log('does not exist', srch)
+      setDoesNotExist(true)
+      setSrch('')
+      return
+    } else if(isNaN(srch)){
+      console.log('not a number!')
+      setSrch('')
+      return
+    } else if(srch === ''){
+      setSrch('')
+      return
+    }
     props.updateSearch(Number(srch-1))
     setSrch('')
   }
 
     return (
+        <>
         <SearchDiv>
         <form onSubmit={event => handleSubmit(event)}>
             <input type="text" name="flight" value={srch} placeholder='Enter flight number...' onChange={event => handleChange(event)} />
           <button>Search!</button>
         </form>
         </SearchDiv>
+        {doesNotExist && <div>Error, flight does not exist!</div>}
+        </>
     )
 }
 

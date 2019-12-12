@@ -27,6 +27,9 @@ const MainDiv = styled.div `
   h1{
     margin-top: -30px;
   }
+  #launch{
+    margin-top: 10px;
+  }
 `
 
 function App() {
@@ -57,11 +60,11 @@ function App() {
       <MainDiv>
         <img id='logo' src='https://www.stickpng.com/assets/images/5842a770a6515b1e0ad75afe.png' alt='Space X' />
         <h1>Flight Finder</h1>
-        <SearchBar updateSearch={updateSearch} />
+        <SearchBar updateSearch={updateSearch} data={data} />
         <div>{data[flight].mission_name === '' ? (<>
             {isLoading ? (<div><Loading/></div>
             ) : (
-              <button onClick={() => dispatch(getData())}>Launch!</button>
+              <button id='launch' onClick={() => dispatch(getData())}>Launch!</button>
             ) }</>
         ) : (
           <><Card data={data} flight={flight} image={image} changeImage={changeImage} updateSearch={updateSearch}/></>
